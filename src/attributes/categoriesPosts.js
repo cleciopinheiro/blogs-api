@@ -3,27 +3,26 @@ const { DataTypes } = require('sequelize');
 /**
  * @type {import('sequelize').ModelAttributes}
  */
-const postsCategoriesAttributes = {
-  categoryId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    field: 'category_id',
-    primaryKey: true,
-    references: {
-      key: 'id',
-      model: 'categories',
-    },
-  },
+
+const categoriesPostsAttributes = {
   postId: {
     type: DataTypes.INTEGER,
     allowNull: false,
     field: 'post_id',
-    primaryKey: true,
     references: {
-      key: 'id',
       model: 'blog_posts',
+      key: 'id',
+    },
+  },
+  categoryId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: 'category_id',
+    references: {
+      model: 'categories',
+      key: 'id',
     },
   },
 };
 
-module.exports = postsCategoriesAttributes;
+module.exports = categoriesPostsAttributes;

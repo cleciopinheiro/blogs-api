@@ -3,7 +3,8 @@ const { DataTypes } = require('sequelize');
 /**
  * @type {import('sequelize').ModelAttributes}
  */
-const blogPostsAttributes = {
+
+const blogPostAttributes = {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -16,28 +17,24 @@ const blogPostsAttributes = {
   },
   content: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   userId: {
     type: DataTypes.INTEGER,
-    allowNull: true,
+    allowNull: false,
     field: 'user_id',
     references: {
+      model: 'users',
       key: 'id',
-      model: 'Users',
     },
   },
   published: {
     type: DataTypes.DATE,
     allowNull: false,
-    defaultValue: new Date(),
   },
   updated: {
     type: DataTypes.DATE,
     allowNull: false,
-    defaultValue: new Date(),
-    onUpdate: new Date(),
   },
 };
 
-module.exports = blogPostsAttributes;
+module.exports = blogPostAttributes;

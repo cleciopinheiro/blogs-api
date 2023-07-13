@@ -1,4 +1,4 @@
-const blogPostsAttributes = require('../attributes/blogPosts');
+const blogPostAttributes = require('../attributes/blogPosts');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -7,7 +7,7 @@ module.exports = {
    * @param {import('sequelize').QueryInterface} queryInterface 
    * @param {import('sequelize')} Sequelize 
    */
-    const blogPostsTable = queryInterface.createTable('blog_posts', blogPostsAttributes);
+    const blogPostsTable = queryInterface.createTable('blog_posts', blogPostAttributes);
 
     return blogPostsTable;
   },
