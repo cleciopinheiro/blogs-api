@@ -6,9 +6,11 @@ const JWT_CONFIG = {
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secretJWT';
 
-const generateToken = (payload) => 
-    jwt.sign(payload, JWT_SECRET, JWT_CONFIG);
+const generateToken = (payload) => jwt.sign(payload, JWT_SECRET, JWT_CONFIG);
+
+const verifyToken = (token) => jwt.verify(token, JWT_SECRET);
 
 module.exports = {
     generateToken,
+    verifyToken,
 };
