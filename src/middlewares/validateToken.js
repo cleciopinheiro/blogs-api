@@ -5,7 +5,10 @@ const validateToken = async (req, res, next) => {
   if (!authorization) return res.status(401).json({ message: 'Token not found' });
 
   try {
-    const token = await verifyToken(authorization.split(' ')[1]);
+    const authBarear = authorization.includes('Bearer') 
+    ? authorization.split(' ')[1] : authorization;
+
+    const token = await verifyToken(authBarear);
     req.user = token;
     next();
   } catch (error) {
