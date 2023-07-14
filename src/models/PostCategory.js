@@ -9,7 +9,7 @@ const categoriesPostsAttributes = require('../attributes/categoriesPosts');
 const postCategoriesSchema = (sequelize, DataTypes) => {
   const postCategoriesTable = sequelize.define('PostCategory', categoriesPostsAttributes,
   {
-    tableName: 'PostCategories',
+    tableName: 'posts_categories',
     underscored: true,
     timestamps: false,
   });

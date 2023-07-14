@@ -8,7 +8,7 @@ const blogPostAttributes = require('../attributes/blogPosts');
 const blogPostsSchema = (sequelize, DataTypes) => {
   const blogPostsTable = sequelize.define('BlogPost', blogPostAttributes,
   {
-    tableName: 'BlogPosts',
+    tableName: 'blog_posts',
     underscored: true,
     timestamps: false,
   });
