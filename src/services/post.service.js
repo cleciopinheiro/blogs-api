@@ -27,7 +27,7 @@ const getPosts = async () => {
   const result = await BlogPost.findAll({
     include: [
       { model: User, as: 'user', attributes: { exclude: ['password'] } },
-      { model: Category, as: 'categories', through: { attributes: [] } },
+      { model: Category, as: 'categories' },
     ],
   });
 
@@ -38,7 +38,7 @@ const getPostById = async (id) => {
   const result = await BlogPost.findByPk(id, {
     include: [
       { model: User, as: 'user', attributes: { exclude: ['password'] } },
-      { model: Category, as: 'categories', through: { attributes: [] } },
+      { model: Category, as: 'categories' },
     ],
   });
 
@@ -47,8 +47,26 @@ const getPostById = async (id) => {
   return result;
 };
 
+const updatePost = async (id, data, userId) => {
+const newData = { title: data.title, content: data.content };
+
+  const post = await BlogPost.findByPk(id, { 
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories' },
+    ],
+  });
+  
+  if (post.userId !== userId) return { message: 'Unauthorized user' };
+  
+  await post.update(newData);
+  
+  return post;
+};
+
 module.exports = {
   createPost,
   getPosts,
   getPostById,
+  updatePost,
 };
