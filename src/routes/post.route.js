@@ -5,6 +5,7 @@ const { validateUpdateBlogPost } = require('../middlewares/validateUpdatePost');
 const { validateDeletePost } = require('../middlewares/validateDeletePost');
 
 const app = express.Router();
+app.get('/post/search', validateToken, postController.searchPost);
 app.get('/post', validateToken, postController.getPosts);
 app.get('/post/:id', validateToken, postController.getPostById);
 app.post('/post', validateToken, postController.createPost);
