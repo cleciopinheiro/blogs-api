@@ -9,7 +9,6 @@ const validateToken = async (req, res, next) => {
     ? authorization.split(' ')[1] : authorization;
 
     const token = await verifyToken(authBarear);
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', token);
     req.user = token;
     next();
   } catch (error) {

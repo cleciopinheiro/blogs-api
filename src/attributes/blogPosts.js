@@ -26,6 +26,8 @@ const blogPostAttributes = {
       model: 'users',
       key: 'id',
     },
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
   },
   published: {
     type: DataTypes.DATE,

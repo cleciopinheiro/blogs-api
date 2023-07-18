@@ -1,6 +1,6 @@
 const { BlogPost, Category, PostCategory, User } = require('../models');
 
-const createPost = async (data) => {
+const createPost = async ({ data, id }) => {
   const categoriesData = await Category.findAll();
   const categories = categoriesData.map((item) => item.id);
 
@@ -13,7 +13,11 @@ const createPost = async (data) => {
     return { message: 'one or more "categoryIds" not found' };
   }
 
-  const result = await BlogPost.create({ title: data.title, content: data.content, userId: 1 });
+  const result = await BlogPost.create({
+    title: data.title,
+    content: data.content,
+    userId: id,
+  });
 
   const postCategoryPromises = data.categoryIds.map((item) =>
     PostCategory.create({ postId: result.id, categoryId: item }));
@@ -47,21 +51,24 @@ const getPostById = async (id) => {
   return result;
 };
 
-const updatePost = async (id, data, userId) => {
-const newData = { title: data.title, content: data.content };
+const updatePost = async (id, data) => {
+  const newPost = { title: data.title, content: data.content };
 
-  const post = await BlogPost.findByPk(id, { 
+  const post = await BlogPost.findByPk(id, {
     include: [
       { model: User, as: 'user', attributes: { exclude: ['password'] } },
       { model: Category, as: 'categories' },
     ],
   });
-  
-  if (post.userId !== userId) return { message: 'Unauthorized user' };
-  
-  await post.update(newData);
-  
+
+  await post.update(newPost);
+
   return post;
+};
+
+const deletePost = async (id) => {
+  await BlogPost.destroy({ where: { id } });
+  return { message: 'Post deleted successfully' };
 };
 
 module.exports = {
@@ -69,4 +76,5 @@ module.exports = {
   getPosts,
   getPostById,
   updatePost,
+  deletePost,
 };
