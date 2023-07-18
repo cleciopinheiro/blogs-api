@@ -8,5 +8,6 @@ const app = express.Router();
 app.get('/user', validateToken, userController.getUsers);
 app.get('/user/:id', validateToken, userController.getUserById);
 app.post('/user', validateUser, userController.createUser);
+app.delete('/user/me', validateToken, userController.deleteUser);
 
 module.exports = app;
