@@ -1,7 +1,7 @@
 # Blogs API
 
 [Trybe](https://www.betrybe.com/) é uma escola de tecnologia focada na formação de Desenvolvedores Web e o projeto Blogs API foi proposto como uma atividade para aprimorar os estudos sobre desenvolvimento back-end.
-## Description
+## Descrição
 
 A aplicação é uma API e um banco de dados com conteúdo de um blog. Deve permitir a criação, leitura, atualização e remoção de informações do blog do banco de dados. Ele também realiza autenticação para conceder permissões aos usuários.
 
