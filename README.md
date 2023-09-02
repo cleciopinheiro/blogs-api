@@ -115,4 +115,4 @@ Inicie a aplicação com <strong>nodemon</strong> usando o comando abaixo.
     
 ---
  
-Developed by [Clécio Pinheiro](https://www.linkedin.com/in/cleciopinheirodev), © 2023.
+Desenvolvido por [Clécio Pinheiro](https://www.linkedin.com/in/cleciopinheirodev), © 2023.
